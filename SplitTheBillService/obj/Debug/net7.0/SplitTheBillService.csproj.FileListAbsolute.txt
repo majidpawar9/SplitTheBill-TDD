@@ -1,0 +1,12 @@
+/Users/majidpawar/Web/Sem2/SplitTheBill-TDD/SplitTheBillService/bin/Debug/net7.0/SplitTheBillService.deps.json
+/Users/majidpawar/Web/Sem2/SplitTheBill-TDD/SplitTheBillService/bin/Debug/net7.0/SplitTheBillService.dll
+/Users/majidpawar/Web/Sem2/SplitTheBill-TDD/SplitTheBillService/bin/Debug/net7.0/SplitTheBillService.pdb
+/Users/majidpawar/Web/Sem2/SplitTheBill-TDD/SplitTheBillService/obj/Debug/net7.0/SplitTheBillService.csproj.AssemblyReference.cache
+/Users/majidpawar/Web/Sem2/SplitTheBill-TDD/SplitTheBillService/obj/Debug/net7.0/SplitTheBillService.GeneratedMSBuildEditorConfig.editorconfig
+/Users/majidpawar/Web/Sem2/SplitTheBill-TDD/SplitTheBillService/obj/Debug/net7.0/SplitTheBillService.AssemblyInfoInputs.cache
+/Users/majidpawar/Web/Sem2/SplitTheBill-TDD/SplitTheBillService/obj/Debug/net7.0/SplitTheBillService.AssemblyInfo.cs
+/Users/majidpawar/Web/Sem2/SplitTheBill-TDD/SplitTheBillService/obj/Debug/net7.0/SplitTheBillService.csproj.CoreCompileInputs.cache
+/Users/majidpawar/Web/Sem2/SplitTheBill-TDD/SplitTheBillService/obj/Debug/net7.0/SplitTheBillService.dll
+/Users/majidpawar/Web/Sem2/SplitTheBill-TDD/SplitTheBillService/obj/Debug/net7.0/refint/SplitTheBillService.dll
+/Users/majidpawar/Web/Sem2/SplitTheBill-TDD/SplitTheBillService/obj/Debug/net7.0/SplitTheBillService.pdb
+/Users/majidpawar/Web/Sem2/SplitTheBill-TDD/SplitTheBillService/obj/Debug/net7.0/ref/SplitTheBillService.dll
