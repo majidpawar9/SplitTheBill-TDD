@@ -16,11 +16,17 @@ namespace STB.UnitTests.Services
         }
 
         [TestMethod]
-        public void IsSTB_InputIs1_ReturnFalse()
+        [DataRow(100.00, 4, 25.00)] 
+        [DataRow(50.00, 2, 25.00)]  
+        [DataRow(0.00, 5, 0.00)]
+        [DataRow(100.00, 1, 100.00)]
+        public void SplitAmount_ReturnsCorrectSplit(double totalAmount, int numberOfPeople, double expectedSplit)
         {
-            bool result = _STBService.IsBill(1);
-
-            Assert.IsFalse(result, "1 should not be prime");
+            
+            double splitAmount = _STBService.SplitAmount(totalAmount, numberOfPeople);
+            Console.WriteLine(splitAmount);
+            
+            Assert.AreEqual(expectedSplit, splitAmount);
         }
     }
 }

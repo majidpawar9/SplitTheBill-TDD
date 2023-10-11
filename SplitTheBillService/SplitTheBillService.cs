@@ -4,13 +4,21 @@ namespace SplitTheBill.Service
 {
     public class SplitTheBillService
     {
-        public bool IsBill(int amount)
+        public double SplitAmount(double totalAmount, int numberOfPeople)
         {
-            if (amount == 1)
+            if (numberOfPeople <= 0)
             {
-                return false;
+                throw new Exception("Number of people must be greater than zero.");
             }
-            throw new NotImplementedException("Please create a test first.");
+
+            if (totalAmount < 0)
+            {
+                throw new Exception("Total amount must be a non-negative value.");
+            }
+
+            double split = totalAmount / numberOfPeople;
+            
+            return split;
         }
     }
 }
