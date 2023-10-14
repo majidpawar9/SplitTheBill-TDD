@@ -4,7 +4,7 @@ namespace SplitTheBill.Service
 {
     public class SplitTheBillService
     {
-        public double SplitAmount(double totalAmount, int numberOfPeople)
+        public decimal SplitAmount(decimal totalAmount, int numberOfPeople)
         {
             if (numberOfPeople <= 0)
             {
@@ -16,12 +16,12 @@ namespace SplitTheBill.Service
                 throw new Exception("Total amount must be a non-negative value.");
             }
 
-            double split = totalAmount / numberOfPeople;
+            decimal split = totalAmount / numberOfPeople;
 
             return split;
         }
 
-        public Dictionary<string, double> CalculateTips(Dictionary<string, double> mealCosts, float tipPercentage)
+        public Dictionary<string, decimal> CalculateTips(Dictionary<string, decimal> mealCosts, float tipPercentage)
         {
             if (mealCosts == null || mealCosts.Count == 0)
             {
@@ -33,14 +33,14 @@ namespace SplitTheBill.Service
                 throw new Exception("The tip percentage cannot be negative.");
             }
 
-            double totalMealCost = mealCosts.Values.Sum();
-            double totalTip = (double)tipPercentage / 100 * totalMealCost;
+            decimal totalMealCost = mealCosts.Values.Sum();
+            decimal totalTip = (decimal)tipPercentage / 100 * totalMealCost;
 
-            var tipAmounts = new Dictionary<string, double>();
+            var tipAmounts = new Dictionary<string, decimal>();
 
             foreach (var entry in mealCosts)
             {
-                double tip = entry.Value / totalMealCost * totalTip;
+                decimal tip = entry.Value / totalMealCost * totalTip;
                 tipAmounts[entry.Key] = tip;
             }
 

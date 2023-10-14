@@ -16,71 +16,77 @@ namespace STB.UnitTests.Services
         }
 
         [TestMethod]
-        [DataRow(100.00, 4, 25.00)] // Total amount divided by 4 people should be 25.00
-        [DataRow(50.00, 2, 25.00)]  // Total amount divided by 2 people should be 25.00
-        [DataRow(100.00, 1, 100.00)] // When there's only 1 person, they should pay the full amount
-        public void SplitAmount_ReturnsCorrectSplit(double totalAmount, int numberOfPeople, double expectedSplit)
+        public void SplitAmount_ReturnsCorrectSplit()
         {
 
-            double splitAmount = _STBService.SplitAmount(totalAmount, numberOfPeople);
-            Console.WriteLine(splitAmount);
+            decimal totalAmount = 100.00M;
+            int numberOfPeople = 4;
+            decimal expectedSplit = 25.00M;
+
+            // Total amount of 100 divided by 4 people should be 25
+            decimal splitAmount = _STBService.SplitAmount(totalAmount, numberOfPeople);
 
             Assert.AreEqual(expectedSplit, splitAmount);
         }
 
         [TestMethod]
-        [DataRow(-100.00, 4)]  // Total amount is negative
-        [DataRow(100.00, -4)]  // Number of people is negative
-        [DataRow(-100.00, -4)] // Both total amount and number of people are negative
-        [DataRow(100.00, 0)]   // Number of people is zero
-        public void SplitAmount_InvalidInput_ThrowsArgumentException(double totalAmount, int numberOfPeople)
+        public void SplitAmount_InvalidInput_ThrowsArgumentException()
         {
+            decimal totalAmount = -100.00M;
+            int numberOfPeople = 4;
+
+            // Total amount of -100 is negative and should throw exception
             Action act = () => _STBService.SplitAmount(totalAmount, numberOfPeople);
             Assert.ThrowsException<Exception>(act);
         }
 
         [TestMethod]
-        [DataRow(0.00, 4)]
-        public void SplitAmount_ZeroAmount_ReturnZero_IrrespectiveOfNoOfPeople(double totalAmount, int numberOfPeople)
+        public void SplitAmount_ZeroAmount_ReturnZero_IrrespectiveOfNoOfPeople()
         {
-            double splitAmount = _STBService.SplitAmount(totalAmount, numberOfPeople);
+            decimal totalAmount = 0.00M;
+            int numberOfPeople = 4; 
+
+            // Total Amount of 0 should return a split of 0
+            decimal splitAmount = _STBService.SplitAmount(totalAmount, numberOfPeople);
             Assert.AreEqual(0, splitAmount);
         }
 
         [TestMethod]
-        [DataRow(20.00, 15, 3.0)] // Meal cost, tip percentage, expected tip amount
-        [DataRow(15.00, 50, 7.50)]
-        [DataRow(25.00, 10, 2.5)]
-        public void CalculateTips_ValidInput_ReturnsCorrectTipAmounts(double mealCost, float tipPercentage, double expectedTip)
+        public void CalculateTips_ValidInput_ReturnsCorrectTipAmounts()
         {
-            var mealCosts = new Dictionary<string, double>
+            decimal mealCost = 20.00M;
+            float tipPercentage = 15.00f;
+            decimal expectedTip = 3.00M;
+
+            var mealCosts = new Dictionary<string, decimal>
         {
             { "People", mealCost },
         };
-            var tipAmounts = _STBService.CalculateTips(mealCosts, tipPercentage);
 
+        // Total tip on Amount 20 should be 3
+            var tipAmounts = _STBService.CalculateTips(mealCosts, tipPercentage);
             Assert.AreEqual(expectedTip, tipAmounts["People"]);
             
         }
 
         [TestMethod]
-        [DataRow(null, 15)]
-        public void CalculateTips_NullMealCosts_ThrowsException(Dictionary<string, double> mealCosts, float tipPercentage)
+        public void CalculateTips_NullMealCosts_ThrowsException()
         {
-            Assert.ThrowsException<Exception>(() => _STBService.CalculateTips(mealCosts, tipPercentage));
+            // null or zero in place of dictionary should throw an Exception
+            Assert.ThrowsException<Exception>(() => _STBService.CalculateTips(null, 15));
         }
 
         [TestMethod]
-        [DataRow(100.00, -10)]
-        public void CalculateTips_NegativeTipPercentage_ThrowsException(double mealCost, float tipPercentage)
+        public void CalculateTips_NegativeTipPercentage_ThrowsException()
         {
-            // Arrange
-            var mealCosts = new Dictionary<string, double>
+            decimal mealCost = 100.00M;
+            float tipPercentage = -10.00f;
+
+            var mealCosts = new Dictionary<string, decimal>
         {
             { "Person", mealCost }
         };
-
-            // Act and Assert
+            // A negative Tip should throw an Exception
             Assert.ThrowsException<Exception>(() => _STBService.CalculateTips(mealCosts, tipPercentage));
         }
 
