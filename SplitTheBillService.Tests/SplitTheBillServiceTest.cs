@@ -110,13 +110,25 @@ namespace STB.UnitTests.Services
         }
 
         [TestMethod]
-        public void CalculateTipPerPerson_NegativeTipPercentage_ThrowsArgumentException()
+        public void CalculateTipPerPerson_NegativeTipPercentage_ThrowsException()
         {
             decimal price = 100.00M;
             int numberOfPatrons = 4;
             float tipPercentage = -10.0f;
-            
-            Assert.ThrowsException<ArgumentException>(() => _STBService.CalculateTipPerPerson(price, numberOfPatrons, tipPercentage));
+
+            // Negative tip will throw Exception
+            Assert.ThrowsException<Exception>(() => _STBService.CalculateTipPerPerson(price, numberOfPatrons, tipPercentage));
+        }
+
+        [TestMethod]
+        public void CalculateTipPerPerson_ZeroPatrons_ThrowsException()
+        {
+            decimal price = 100.00M;
+            int numberOfPatrons = 0;
+            float tipPercentage = 15.0f;
+
+            // Number of Patrons if 0 will throw Exception
+            Assert.ThrowsException<Exception>(() => _STBService.CalculateTipPerPerson(price, numberOfPatrons, tipPercentage));
         }
     }
 }

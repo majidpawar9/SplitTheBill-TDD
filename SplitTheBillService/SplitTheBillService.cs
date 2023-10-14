@@ -51,7 +51,7 @@ namespace SplitTheBill.Service
         {
             if (price < 0 || numberOfPatrons <= 0 || tipPercentage < 0)
             {
-                throw new ArgumentException("Invalid input values. Price, number of patrons, and tip percentage must be non-negative values.");
+                throw new Exception("Invalid input values. Price, number of patrons, and tip percentage must be non-negative values.");
             }
 
             decimal totalTip = price * (decimal)(tipPercentage / 100);
