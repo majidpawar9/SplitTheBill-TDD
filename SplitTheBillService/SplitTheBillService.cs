@@ -4,6 +4,7 @@ namespace SplitTheBill.Service
 {
     public class SplitTheBillService
     {
+        // This func Splits a total amount evenly among a specified number of people.
         public decimal SplitAmount(decimal totalAmount, int numberOfPeople)
         {
             if (numberOfPeople <= 0)
@@ -21,6 +22,7 @@ namespace SplitTheBill.Service
             return split;
         }
 
+        // This func Calculates the tip amount for each person based on meal costs and tip percentage.
         public Dictionary<string, decimal> CalculateTips(Dictionary<string, decimal> mealCosts, float tipPercentage)
         {
             if (mealCosts == null || mealCosts.Count == 0)
@@ -47,6 +49,7 @@ namespace SplitTheBill.Service
             return tipAmounts;
         }
 
+        // This func Calculates the tip amount per person based on the price, number of patrons, and tip percentage.
         public decimal CalculateTipPerPerson(decimal price, int numberOfPatrons, float tipPercentage)
         {
             if (price < 0 || numberOfPatrons <= 0 || tipPercentage < 0)
