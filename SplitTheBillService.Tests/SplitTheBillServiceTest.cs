@@ -44,7 +44,7 @@ namespace STB.UnitTests.Services
         public void SplitAmount_ZeroAmount_ReturnZero_IrrespectiveOfNoOfPeople()
         {
             decimal totalAmount = 0.00M;
-            int numberOfPeople = 4; 
+            int numberOfPeople = 4;
 
             // Total Amount of 0 should return a split of 0
             decimal splitAmount = _STBService.SplitAmount(totalAmount, numberOfPeople);
@@ -63,10 +63,10 @@ namespace STB.UnitTests.Services
             { "People", mealCost },
         };
 
-        // Total tip on Amount 20 should be 3
+            // Total tip on Amount 20 should be 3
             var tipAmounts = _STBService.CalculateTips(mealCosts, tipPercentage);
             Assert.AreEqual(expectedTip, tipAmounts["People"]);
-            
+
         }
 
         [TestMethod]
@@ -90,5 +90,33 @@ namespace STB.UnitTests.Services
             Assert.ThrowsException<Exception>(() => _STBService.CalculateTips(mealCosts, tipPercentage));
         }
 
+        [TestMethod]
+        public void CalculateTipPerPerson_ValidInput_ReturnsCorrectTipPerPerson()
+        {
+            decimal price = 100.00M;
+            int numberOfPatrons = 4;
+            float tipPercentage = 15.0f;
+
+            // Total tip: 15.00, 15.00 / 4 = 3.75
+
+            // Total tip of amount 100 with a percentage of 15 is 15
+            // Total tip which is 15 divided by 4 Patrons is 3.75
+            decimal expectedTipPerPerson = 3.75M;
+
+            decimal actualTipPerPerson = _STBService.CalculateTipPerPerson(price, numberOfPatrons, tipPercentage);
+
+
+            Assert.AreEqual(expectedTipPerPerson, actualTipPerPerson);
+        }
+
+        [TestMethod]
+        public void CalculateTipPerPerson_NegativeTipPercentage_ThrowsArgumentException()
+        {
+            decimal price = 100.00M;
+            int numberOfPatrons = 4;
+            float tipPercentage = -10.0f;
+            
+            Assert.ThrowsException<ArgumentException>(() => _STBService.CalculateTipPerPerson(price, numberOfPatrons, tipPercentage));
+        }
     }
 }

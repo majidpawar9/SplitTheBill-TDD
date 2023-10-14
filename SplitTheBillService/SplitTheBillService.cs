@@ -46,5 +46,19 @@ namespace SplitTheBill.Service
 
             return tipAmounts;
         }
+
+        public decimal CalculateTipPerPerson(decimal price, int numberOfPatrons, float tipPercentage)
+        {
+            if (price < 0 || numberOfPatrons <= 0 || tipPercentage < 0)
+            {
+                throw new ArgumentException("Invalid input values. Price, number of patrons, and tip percentage must be non-negative values.");
+            }
+
+            decimal totalTip = price * (decimal)(tipPercentage / 100);
+
+            decimal tipPerPerson = totalTip / numberOfPatrons;
+
+            return tipPerPerson;
+        }
     }
 }
